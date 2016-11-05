@@ -16,7 +16,7 @@
 title: Lim Sungmook's BLOG
 email: ipes4579@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  배운 것들, 느낀 것들을 정리하는 블로그입니다.
+  배운 것, 느낀 것, 그리고 공유할 것 들을 정리하는 블로그입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  limsungmook
