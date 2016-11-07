@@ -21,7 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  limsungmook
 disqus:
-  shortname: limsungmook-blog-jekyll
+  shortname: "limsungmook-github"
 google-analytics: UA-86901662-1
 
 # Build settings
