@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "시에라(sierra) 업데이트 후 Oracle 로케일을 인식할 수 없습니다(locale not recognized) 에러가 났을 때 해결방법"
 date:   2016-11-04 17:27:23 +0900
 ---
