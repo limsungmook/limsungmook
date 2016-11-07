@@ -58,7 +58,7 @@ yandex_site_verification :
 twitter:
   username               :
 facebook:
-  username               :
+  username               : limsungmook
   app_id                 :
   publisher              :
 og_image                 : # Open Graph/Twitter default site image
@@ -88,7 +88,7 @@ author:
   codepen          :
   dribbble         :
   flickr           :
-  facebook         :
+  facebook         : "limsungmook"
   foursquare       :
   github           : "limsungmook"
   google_plus      :
@@ -245,3 +245,4 @@ defaults:
       comments: true
       share: true
       related: true
+
