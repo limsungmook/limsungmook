@@ -67,7 +67,7 @@ node {
                     [$class: 'ParametersDefinitionProperty', parameterDefinitions:
                             [
                                     [$class: 'BooleanParameterDefinition', defaultValue: false, description: '테스트를 Skip 할 수 있습니다. 선택 시 테스트를 건너뛰고 체크아웃 - 빌드 - 아카이빙만 진행합니다', name: 'skipTests']
-                                    , [$class: 'StringParameterDefinition', defaultValue: 'hsqldb', description: 'Spring Boot 에서 Active 할 Profile 들을 쉼표로 분리해서 입력하세요. 예) hsqldb,mysql', name: 'activeProfiles']
+                                    , [$class: 'StringParameterDefinition', defaultValue: 'development', description: 'Maven에서 Active 할 Profile 을 입력하세요. 예) production', name: 'activeProfile']
                             ]
                     ]])
 
@@ -86,14 +86,14 @@ node {
     }
     if (skipTests != true) {
         stage('Test') {
-            sh "'${mvnHome}/bin/mvn' -Dspring.profiles.active=${activeProfiles} -Dmaven.test.failure.ignore -B verify"
+            sh "'${mvnHome}/bin/mvn' -P ${activeProfile} -Dmaven.test.failure.ignore -B verify"
         }
         stage('Store Test Results') {
             junit '**/target/surefire-reports/TEST-*.xml'
         }
     }
     stage('Build') {
-        sh "'${mvnHome}/bin/mvn' -Dspring.profiles.active=${activeProfiles} -Dmaven.test.skip=true clean install"
+        sh "'${mvnHome}/bin/mvn' -P ${activeProfile} -Dmaven.test.skip=true clean install"
     }
     stage('Archive') {
         archive '**/target/*.jar'
@@ -110,7 +110,7 @@ Pipeline 의 각 단계는 stage 로 나누어져 진행된다. 각 단계별로
 Job 자체에 따로 Environment 를 지정할 수도 있지만 이렇게 코드 자체에 Parameter를 넣도록 강제하면 소스코드와 젠킨스 사이의 갭이 줄어들게 된다.
 이렇게 젠킨스로부터 Inject 된 변수들은 groovy 인스턴스로써 제어할 수 있게 된다.
 
-위 Pipeline 은 skipTests 옵션이 켜져 있으면 test 를 skip 하도록 분기하고 Job 마다 Spring Boot Profile 을 따로 설정할 수 있도록 구성되어있다.
+위 Pipeline 은 skipTests 옵션이 켜져 있으면 test 를 skip 하도록 분기하고 Job 마다 Maven Profile 을 따로 설정할 수 있도록 구성되어있다.
 여기서 만든 파이프라인은 Preparation -> Checkout -> Test -> Store Test Results -> Build -> Archive -> Deploy 의 단계로 나누어져 있는데 필요하면 Analytics, Notification 과 같은 Stage 를 추가하면 된다.
 
 ## 실행
@@ -129,8 +129,6 @@ Job 자체에 따로 Environment 를 지정할 수도 있지만 이렇게 코드
 Jenkins 의 투박한 방식은 약간 아쉬움이 남는다.
 예를 들면 위 4-10Line 의 Properties 를 지저분하게 넣는 것 외에는 소스코드로 Job 의 구조를 강제화할 방법이 보이지 않는다. 
 그리고 일단 이렇게 설정을 하게 되면 Build with Parameters 옵션이 켜져 빌드할 때 Property 를 바꿀 수 있게 된다. Job 에서 빌드하는 방식을 고정하는 것을 좋아하는 나로써는 약간의 찝찝함을 남긴다.
-
-Sample Code : [Github skeleton-ws-spring-boot](https://github.com/limsungmook/skeleton-ws-spring-boot)
 
 
 
