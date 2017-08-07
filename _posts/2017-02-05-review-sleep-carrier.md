@@ -3,7 +3,7 @@ layout: single
 title:  "Najell 베이비 슬립 캐리어 후기"
 date:   2017-02-05 16:40:23 +0900
 tags: sleep-carrier 슬립캐리어 najell
-published: true
+published: false
 ---
 
 한결이가 태어난 후로 때와 장소를 가리지 않고 잠드는 통에 아기가 좀더 편하게 잘 수 있으면 좋겠다라고 생각을 했는데, 지인 소개로 슬립 캐리어(Sleep carrier) 를 알게 되었다.
